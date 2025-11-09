@@ -5,7 +5,7 @@ public class Lifetime : MonoBehaviour
 
     [SerializeField]
     private float lifetime;
-    ParticleSystem particleSystem;
+    private ParticleSystem fireParticles;
 
     void Update()
     {
@@ -19,8 +19,8 @@ public class Lifetime : MonoBehaviour
 
         if (lifetime <= 1f)
         {
-            particleSystem = gameObject.GetComponentInChildren<ParticleSystem>();
-            particleSystem.Stop();
+            fireParticles = gameObject.GetComponentInChildren<ParticleSystem>();
+            fireParticles.Stop();
             Transform childTransform = gameObject.transform.Find("Orb");
             if(childTransform != null)
             {
