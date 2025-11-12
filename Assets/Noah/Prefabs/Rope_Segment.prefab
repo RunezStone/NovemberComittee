@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 484733653668993211}
   - component: {fileID: 4658904761087488104}
   - component: {fileID: 7559052938368889086}
+  - component: {fileID: 8251748388236266100}
   m_Layer: 0
   m_Name: Rope_Segment
   m_TagString: Untagged
@@ -192,3 +193,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.0952381, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &8251748388236266100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6600938094459666176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38fd6643709373940a9e67b5b2fe8970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  onFire: 0
+  hasBurningParticles: 0
+  burningParticles: {fileID: 968559859456100127, guid: 6370e7625261c724e87e1fbb95b55c00, type: 3}
+  lifetime: 1
