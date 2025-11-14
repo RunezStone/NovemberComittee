@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
     [Header("Movement Settings")]
     [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float jumpForce = 10f;
     [SerializeField] bool canJump = true;
     [SerializeField] float groundCheckRadius = 0.2f;
     [SerializeField] LayerMask groundLayer;
@@ -13,7 +13,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Transform groundCheck;
 
-    // Update is called once per frame
     void Update()
     {
         HandleMovement();
@@ -21,19 +20,19 @@ public class PlayerMovement : MonoBehaviour
 
     void HandleMovement()
     {
+        // Horizontal movement
         float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
+        Vector2 movement = new Vector2(moveX, 0f);
+        rb.linearVelocity = new Vector2(movement.x * moveSpeed, rb.linearVelocity.y);
 
-        Vector2 movement = new Vector2(moveX, moveY).normalized;
-        rb.linearVelocity = movement * moveSpeed;
-
-        // Creates a circle to see if the player is on the groundLayer
+        // Ground check
         canJump = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        if(canJump && Input.GetButtonDown("Space"))
+        // Jump
+        if (canJump && Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Player is Jumping");
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
-
     }
 }
