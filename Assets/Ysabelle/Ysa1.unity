@@ -256,8 +256,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   moveSpeed: 5
-  rb: {fileID: 0}
-  groundCheck: {fileID: 0}
+  canJump: 1
+  groundCheckRadius: 0.2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  rb: {fileID: 1609399204}
+  groundCheck: {fileID: 1483673849}
 --- !u!212 &1609399206
 SpriteRenderer:
   m_ObjectHideFlags: 0
