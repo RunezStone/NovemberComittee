@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Fireball
+  - Candle
   layers:
   - Default
   - TransparentFX
@@ -12,8 +13,12 @@ TagManager:
   - 
   - Water
   - UI
+<<<<<<< Updated upstream
   - Candle
+=======
+>>>>>>> Stashed changes
   - 
+  - Ground
   - 
   - 
   - 
