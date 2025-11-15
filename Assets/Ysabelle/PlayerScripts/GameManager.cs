@@ -32,7 +32,8 @@ public class GameManager : MonoBehaviour
 
     void GameOver()
     {
-        
+        Time.timeScale  = 0;
+        loseUI.gameObject.SetActive(true);
     }
 
     void GameWin()
