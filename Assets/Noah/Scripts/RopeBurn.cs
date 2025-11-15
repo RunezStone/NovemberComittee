@@ -1,6 +1,7 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Flammable : MonoBehaviour
+public class RopeBurn : MonoBehaviour
 {
     public bool onFire;
     public bool hasBurningParticles;
@@ -9,6 +10,8 @@ public class Flammable : MonoBehaviour
     [SerializeField]
     private float lifetime;
     private ParticleSystem particleObjRef;
+
+    public GameObject ropeStartRef;
 
     void Start()
     {
@@ -47,19 +50,19 @@ public class Flammable : MonoBehaviour
 
                 if (joint.connectedBody == thisRb)
                 {
-                    Flammable f = joint.GetComponent<Flammable>();
-                    if (f != null)
+                    RopeBurn rb = joint.GetComponent<RopeBurn>();
+                    if (rb != null)
                     {
-                        f.onFire = true;
+                        rb.onFire = true;
                     }
                 }
 
                 if (joint.attachedRigidbody == thisRb && joint.connectedBody != null)
                 {
-                    Flammable f = joint.connectedBody.GetComponent<Flammable>();
-                    if (f != null)
+                    RopeBurn rb = joint.connectedBody.GetComponent<RopeBurn>();
+                    if (rb != null)
                     {
-                        f.onFire = true;
+                        rb.onFire = true;
                     }
                 }
 
@@ -69,6 +72,12 @@ public class Flammable : MonoBehaviour
             particleObjRef.Stop();
             Destroy(particleObjRef.gameObject, 1.5f);
 
+            // set parent rope to destoryed if not already
+            if(ropeStartRef.GetComponent<DynamicRope>().isDestroyed == false)
+            {
+                ropeStartRef.GetComponent<DynamicRope>().RopeDestoryEventHandler();
+            }
+            
             Destroy(gameObject); // delete self after lighting adjacent portions
         }
 
@@ -86,8 +95,8 @@ public class Flammable : MonoBehaviour
     // SEts onFire to true when an object tagged as fireball collides
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Hit!");
-        Debug.Log(collision.gameObject.tag);
+        // Debug.Log("Hit!");
+        // Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Fireball"))
         {
             onFire = true;

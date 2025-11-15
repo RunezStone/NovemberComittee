@@ -5,6 +5,9 @@ public class DynamicRope : MonoBehaviour
 {
     [SerializeField] private Transform ropeEnd;
     [SerializeField] private GameObject ropePrefab;
+    public bool isDestroyed;
+
+    private GameObject[] segments;
 
     void Start()
     {
@@ -25,7 +28,7 @@ public class DynamicRope : MonoBehaviour
         // from an x and y in unity. I spose.
         float ropeAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        GameObject[] segments = new GameObject[numSegments];
+        segments = new GameObject[numSegments];
 
         // Use a single temp instance to measure local orientation OR measure per instance
         // Here we instantiate then correct each instance based on its transform.up
@@ -34,7 +37,7 @@ public class DynamicRope : MonoBehaviour
             // sets position to base and offsets so the segments line up.
             Vector3 segmentPos = transform.position + direction * (segmentLength * i);
             GameObject seg = Instantiate(ropePrefab, segmentPos, Quaternion.Euler(0, 0, ropeAngle - 90f)); // -90 because prefab sprite is vertical. I think? Tried rotating the prefab but no dice.
-
+            seg.GetComponent<RopeBurn>().ropeStartRef = gameObject;
 
             segments[i] = seg;
 
@@ -50,4 +53,12 @@ public class DynamicRope : MonoBehaviour
         // finally set first rope segment to be connected to ropestart
         gameObject.GetComponent<HingeJoint2D>().connectedBody = segments[0].GetComponent<Rigidbody2D>();
     }
+
+    public void RopeDestoryEventHandler()
+    {
+        isDestroyed = true;
+        Debug.Log("Rope destroyed!");
+    }
 }
+
+
