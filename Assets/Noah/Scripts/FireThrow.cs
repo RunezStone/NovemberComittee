@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class FireThrow : MonoBehaviour
 {
-    public Transform reticle;
+    public Transform reticleObject;
+    private Transform reticle;
 
     [SerializeField]
     private float range = 3f;
@@ -17,6 +18,10 @@ public class FireThrow : MonoBehaviour
     public GameObject projectile;
 
     // Update is called once per frame
+    void Start()
+    {
+        reticle = Instantiate(reticleObject);
+    }
     void Update()
     {
         Vector3 mousePosition = Input.mousePosition;
