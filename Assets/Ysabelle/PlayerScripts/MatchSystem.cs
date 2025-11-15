@@ -31,6 +31,6 @@ public class MatchSystem : MonoBehaviour
 
     public void ResetMatch()
     {
-        maxLightTime = currLightTime;
+        currLightTime = maxLightTime;
     }
 }
