@@ -24,33 +24,36 @@ public class FireThrow : MonoBehaviour
     }
     void Update()
     {
-        Vector3 mousePosition = Input.mousePosition;
-
-        float mouseY = mousePosition.y;
-        float mouseX = mousePosition.x;
-
-        // source position is player transform
-        Vector3 sourcePosition = transform.position;
-
-        // Input.mousePosition is screen space, needs to be in world space to compare to player transform
-        Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        targetPosition.z = 0; // somehow the mouse is not at z = 0, set it there.
-
-        Vector3 direction = targetPosition - sourcePosition;
-
-        // Debug.Log("SourcePos: " + sourcePosition);
-        // Debug.Log("Direction: " + direction);
-
-        // clamp aim direction to range
-        Vector3 adjustedDirection = ClampToCircle(direction, range);
-
-        // set reticle position to clamped aim
-        reticle.position = sourcePosition + adjustedDirection;
-
-
-        if (Input.GetKeyDown(KeyCode.Mouse0)) 
+        if(!PauseMenu.isPaused) // no fire throw logic when paused
         {
-            ShootProjectile(adjustedDirection);
+            Vector3 mousePosition = Input.mousePosition;
+
+            float mouseY = mousePosition.y;
+            float mouseX = mousePosition.x;
+
+            // source position is player transform
+            Vector3 sourcePosition = transform.position;
+
+            // Input.mousePosition is screen space, needs to be in world space to compare to player transform
+            Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            targetPosition.z = 0; // somehow the mouse is not at z = 0, set it there.
+
+            Vector3 direction = targetPosition - sourcePosition;
+
+            // Debug.Log("SourcePos: " + sourcePosition);
+            // Debug.Log("Direction: " + direction);
+
+            // clamp aim direction to range
+            Vector3 adjustedDirection = ClampToCircle(direction, range);
+
+            // set reticle position to clamped aim
+            reticle.position = sourcePosition + adjustedDirection;
+
+
+            if (Input.GetKeyDown(KeyCode.Mouse0)) 
+            {
+                ShootProjectile(adjustedDirection);
+            }
         }
 
     }

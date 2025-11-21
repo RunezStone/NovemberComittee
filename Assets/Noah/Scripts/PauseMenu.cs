@@ -36,4 +36,20 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         isPaused = true;
     }
+
+    public void ResumeButtonClick()
+    {
+        Resume();
+    }
+
+    public void MenuButtonClick()
+    {
+        // go to main menu
+    }
+
+    public void QuitButtonClick()
+    {
+        Application.Quit();
+        UnityEditor.EditorApplication.isPlaying = false;
+    }
 }
