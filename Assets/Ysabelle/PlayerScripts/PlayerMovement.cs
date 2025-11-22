@@ -12,10 +12,20 @@ public class PlayerMovement : MonoBehaviour
     [Header("Components")]
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Transform groundCheck;
+    [SerializeField] Animator playerAnimator;
 
     void Update()
     {
         HandleMovement();
+        if(rb.linearVelocity.magnitude > 1f)
+        {
+            playerAnimator.SetBool("isMoving", true);
+            Debug.Log("IsMoving true- velocity: "+ rb.linearVelocity.magnitude);
+        }
+        else
+        {
+            playerAnimator.SetBool("isMoving", false);
+        }
     }
 
     void HandleMovement()
