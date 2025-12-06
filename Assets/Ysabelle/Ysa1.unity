@@ -892,7 +892,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!223 &1541972799
 Canvas:
   m_ObjectHideFlags: 0
@@ -1131,7 +1131,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!223 &1601185794
 Canvas:
   m_ObjectHideFlags: 0
@@ -1331,6 +1331,7 @@ MonoBehaviour:
     m_Bits: 64
   rb: {fileID: 1609399204}
   groundCheck: {fileID: 1483673849}
+  playerAnimator: {fileID: 0}
 --- !u!212 &1609399206
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1432,7 +1433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15fa7f124224c344aa089fec27ee1f0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FireThrow
-  reticle: {fileID: 210896946}
+  reticleObject: {fileID: 0}
   range: 3
   throwForce: 3
   projectile: {fileID: 6471430038463328912, guid: d118ab7644f20cd468bb185aa2358ecc, type: 3}
